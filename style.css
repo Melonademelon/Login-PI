@@ -1,0 +1,234 @@
+/* --- VARIABLES Y RESET --- */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    /* Degradado arcoíris difuminado */
+    --rainbow-gradient: linear-gradient(90deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+    --shadow-card: 0 20px 40px rgba(0,0,0,0.1);
+    --border-radius: 20px;
+    --input-bg: #f8f9fa;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Para que las figuras de fondo no den scroll */
+    position: relative;
+    /* Agrandamos la letra base */
+    font-size: 18px; 
+}
+
+/* --- DETALLES DE FONDO GEOMÉTRICO --- */
+.bg-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    filter: blur(80px); /* El difuminado mágico */
+    opacity: 0.5;
+}
+
+.shape {
+    position: absolute;
+    background: var(--rainbow-gradient);
+    border-radius: 50%;
+}
+
+.shape1 { width: 400px; height: 400px; top: -100px; left: -100px; }
+.shape2 { width: 300px; height: 300px; bottom: -50px; right: 10%; }
+.shape3 { width: 200px; height: 200px; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% ;}
+
+/* --- CONTENEDOR PRINCIPAL (Diseño PC) --- */
+.main-container {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px); /* Efecto cristal */
+    padding: 60px; /* Mucho aire */
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-card);
+    width: 90%;
+    max-width: 650px; /* Más ancho para PC */
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+}
+
+.hidden { display: none !important; }
+
+/* --- ESTILO DE LETRAS ARCOÍRIS DIFUMINADO --- */
+h2 {
+    font-size: 3rem; /* Letras muy grandes */
+    font-weight: 800;
+    margin-bottom: 30px;
+    background: var(--rainbow-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Efecto de difuminado suave en el texto */
+    text-shadow: 0 0 15px rgba(255,24,0,0.2); 
+    letter-spacing: -1px;
+}
+
+p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* --- FORMULARIOS E INPUTS --- */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+    position: relative; /* Para posicionar el ojo */
+}
+
+input {
+    width: 100%;
+    padding: 18px 25px;
+    padding-right: 60px; /* Espacio para el icono */
+    font-size: 1.1rem;
+    border: 2px solid transparent;
+    border-radius: 50px; /* Bordes muy redondeados */
+    background-color: var(--input-bg);
+    transition: all 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #e81d1d; /* Un color del arcoiris al hacer focus */
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Icono del Ojo y otros */
+.field-icon {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+.field-icon:hover { color: #333; }
+
+/* --- BOTONES --- */
+.btn-group {
+    margin-top: 40px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+button {
+    padding: 18px 35px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Botón con borde arcoíris */
+.btn-rainbow-border {
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    color: #333;
+}
+.btn-rainbow-border:hover { color: #fff; }
+
+.btn-rainbow-border::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; bottom: -2px; right: -2px;
+    background: var(--rainbow-gradient);
+    z-index: -1;
+    border-radius: 50px;
+    transition: opacity 0.3s;
+}
+
+.btn-rainbow-border:hover::before { opacity: 1; }
+
+.btn-rainbow-border::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #fff;
+    border-radius: 48px;
+    z-index: -1;
+    transition: all 0.3s;
+}
+.btn-rainbow-border:hover::after { background: transparent; }
+
+
+/* Botón Relleno */
+.btn-solid {
+    background: #333;
+    color: white;
+}
+.btn-solid:hover {
+    background: var(--rainbow-gradient);
+}
+
+/* Botón texto */
+.btn-text {
+    background: transparent;
+    color: #777;
+    font-size: 1rem;
+    text-decoration: underline;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+/* --- OLVIDÉ MI CONTRASEÑA --- */
+.forgot-password-container {
+    text-align: left;
+    margin-top: -10px;
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.forgot-link {
+    color: #0277bd;
+    text-decoration: none;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.forgot-link:hover { text-decoration: underline; color: #e81d1d; }
+
+/* Mensajes feedback */
+.msg { font-size: 1.1rem; margin-top: 20px; font-weight: bold; padding: 15px; border-radius: 10px;}
+.error { background-color: #ffebee; color: #d32f2f; border: 1px solid #ffcdd2;}
+.success { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9;}
+
+/* Responsive para tablets/móviles grandes */
+@media (max-width: 768px) {
+    .main-container { padding: 40px 20px; }
+    h2 { font-size: 2.2rem; }
+    .btn-group { flex-direction: column; gap: 10px; }
+}
